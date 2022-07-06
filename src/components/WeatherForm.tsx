@@ -1,43 +1,60 @@
 import React, { useState } from 'react';
 
 import { Form, Button, Input } from 'antd';
-import {HomeOutlined} from '@ant-design/icons'
 
 
 type Coords = {
-  lat: number;
-  long: number;
+  lat: string;
+  long: string;
 };
 
 const WeatherForm = () => {
-  const [city, setCity] = useState<string>('');
-  const [coords, setCoords] = useState<Coords>();
+  const initialValue: {cityName: string, coords: Coords} = {cityName: "", coords: {lat: "", long: ""}}
+  const [localisation, setLocalisation] = useState(initialValue)
 
   const onFinish = (value: any) => {
     console.log(value);
   };
 
-    
+  const handleCityChange = ({target}) => {
+    setLocalisation((prev) => {...prev, cityName: })
+  }
+
   return (
-    <Form onFinish={onFinish} layout='inline' labelCol={{span: 12}} wrapperCol={{span: 12}}>
-      <Form.Item label="City Name" >
+    <Form
+      onFinish={onFinish}
+      layout="inline"
+      labelCol={{ span: 12 }}
+      wrapperCol={{ span: 12 }}
+    >
+      <Form.Item label="City Name">
         <Input
+        
           placeholder="ex: London, UK"
-          value={city}
-          onChange={({ target }) => {
-            setCity(target.value);
-          }}
-          prefix={<HomeOutlined />}
-          
+          value={localisation.cityName}
+          onChange={}
         />
       </Form.Item>
-      <Form.Item label="City Name">
-        <Input placeholder="ex: London, UK" />
+
+      <Form.Item label="Lat">
+        <Input
+          placeholder="ex: 50.50"        
+          name="lat" 
+          value={localisation.coords.lat}
+          onChange={}      
+        />
       </Form.Item>
+      <Form.Item label="Long">
+        <Input
+          placeholder="ex: -0.12"
+          name="long"
+          value={localisation.coords.long}
+          onChange={}
+        />
+      </Form.Item>
+
       <Form.Item>
-        <Button type="primary" disabled={!(city || coords)}>
-          Search
-        </Button>
+        <Button type="primary">Search</Button>
       </Form.Item>
     </Form>
   );
