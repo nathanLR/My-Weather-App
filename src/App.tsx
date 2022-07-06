@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
 
-function App() {
+import HeaderContent from './components/Header';
+import LatestSearch from './components/LatestSearchs';
+import WeatherContent from './components/WeatherContent';
+
+import { Layout } from 'antd';
+import { Typography } from 'antd';
+
+import { blue } from '@ant-design/colors';
+import { flex } from './styles/LayoutStyles';
+
+
+const { Title } = Typography;
+const { Header, Content, Sider, Footer } = Layout;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Header style={{ ...flex, padding: '0px 24px' }}>
+        <Title style={{ color: 'white', margin: '0' }}>MyWeatherApp</Title>
+      </Header>
+      <Layout style={{minHeight: 'calc(100vh - 128px)'}}>
+        <Sider theme="light">
+          <LatestSearch />
+        </Sider>
+        <Layout style={{ padding: '24px' }}>
+          <Content style={{ padding: '24px', backgroundColor: '#fff' }}>
+            <WeatherContent/>
+          </Content>
+        </Layout>
+      </Layout>
+      <Footer style={{padding: '0', height: '64px', backgroundColor: '#001529', color: "white"}} >
+        <p>nathan</p>
+      </Footer>
+    </Layout>
   );
 }
 
-export default App;
