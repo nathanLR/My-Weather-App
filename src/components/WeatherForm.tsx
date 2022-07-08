@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-
+import PropTypes from 'prop-types';
 import { Form, Button, Input } from 'antd';
 
-type Coords = {
-  lat: string;
-  long: string;
-};
+import { Coords } from '../Utils/Types';
 
-const WeatherForm = () => {
+const WeatherForm = ({ fetchWeatherData }) => {
   const initialValue: { cityName: string; coords: Coords } = {
     cityName: '',
     coords: { lat: '', long: '' },
   };
   const [localisation, setLocalisation] = useState(initialValue);
 
-  const onFinish = (value: any) => {
-    console.log(value);
+  const handleSubmit = () => {
+    console.log('form submited');
+    if (localisation.cityName.length > 0) {
+      fetchWeatherData(localisation.cityName);
+    } else {
+      fetchWeatherData(localisation.coords);
+    }
   };
 
   const handleCityChange = ({ target }) => {
@@ -37,12 +39,7 @@ const WeatherForm = () => {
   };
   console.log(localisation);
   return (
-    <Form
-      onFinish={onFinish}
-      layout="inline"
-      labelCol={{ span: 12 }}
-      wrapperCol={{ span: 12 }}
-    >
+    <Form layout="inline" labelCol={{ span: 12 }} wrapperCol={{ span: 12 }}>
       <Form.Item label="City Name">
         <Input
           placeholder="ex: London, UK"
@@ -69,10 +66,16 @@ const WeatherForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary">Search</Button>
+        <Button type="primary" onClick={handleSubmit}>
+          Search
+        </Button>
       </Form.Item>
     </Form>
   );
+};
+
+WeatherForm.propTypes = {
+  fetchWeatherData: PropTypes.function,
 };
 
 export default WeatherForm;
