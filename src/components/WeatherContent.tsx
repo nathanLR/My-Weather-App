@@ -7,16 +7,18 @@ import { API_KEY, API_URL } from '../Utils';
 
 const WeatherContent = () => {
   const [weatherData, setWeatherData] = useState<{}>();
-  useEffect(() => {
-    fetch(`${API_URL}lat=50&long=1&appid=${API_KEY}`)
+  const fetchWeatherData = () => {
+    fetch(`${API_URL}lat=50&lon=1&appid=${API_KEY}`)
       .then((reponse) => reponse.json())
       .then((data) => setWeatherData(data));
-  }, []);
-
+  }
+  
+  
   return (
     <div>
       <Divider orientation="left">Localistation</Divider>
       <WeatherForm />
+      {}
       <WeatherData />
     </div>
   );
