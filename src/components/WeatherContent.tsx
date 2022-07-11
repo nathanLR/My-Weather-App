@@ -8,18 +8,20 @@ import { Coords } from '../Utils/Types';
 
 const WeatherContent = () => {
   const [weatherData, setWeatherData] = useState<{}>();
-  const fetchWeatherData = (data: string | Coords) => {
+  const fetchWeatherData = (data: string) => {
     console.log('fetching data' + data);
-    fetch(`${API_URL}lat=${data.lat}&lon=${data.long}&appid=${API_KEY}`)
+    fetch(`${API_URL}q=${data}&units=metric&appid=${API_KEY}`)
       .then((reponse) => reponse.json())
       .then((data) => setWeatherData(data));
   };
   console.log(weatherData);
+
+
   return (
     <div>
       <Divider orientation="left">Localistation</Divider>
       <WeatherForm fetchWeatherData={fetchWeatherData} />
-      {!weatherData ? <div>no data yet</div> : <WeatherData />}
+      <WeatherData data={weatherData}/>
     </div>
   );
 };
