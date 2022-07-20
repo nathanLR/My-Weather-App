@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Row, Col, Image, Card } from 'antd';
 
-const WeatherData = ({ data }) => {
+const WeatherData = ({ data }: any) => {
   const { name, coord, weather, main, dt, sys, wind } = data;
   return (
     <div>

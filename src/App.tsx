@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import HeaderContent from './components/Header';
+
 import LatestSearch from './components/LatestSearchs';
 import WeatherContent from './components/WeatherContent';
 

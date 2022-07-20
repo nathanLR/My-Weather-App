@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Form, Button, Input } from 'antd';
 
 //import { Coords } from '../Utils/Types';
-
-const WeatherForm = ({ fetchWeatherData }) => {
+type Props = {
+  fetchWeatherData: (data: string) => void
+}
+const WeatherForm = ({ fetchWeatherData }: Props) => {
   // ========= V1 =======
   const [city, setCity] = useState<string>('');
   const handleSubmit = () => {
