@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Row, Col, Image, Card } from 'antd';
+import ReactOwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 
 const WeatherData = ({ data }: any) => {
   const { name, coord, weather, main, dt, sys, wind } = data;
@@ -19,6 +23,8 @@ const WeatherData = ({ data }: any) => {
             title={`${name}, ${sys.country} - ${dt}`}
             style={{ height: '100%' }}
           ></Card>
+
+          
         </Col>
       </Row>
     </div>
