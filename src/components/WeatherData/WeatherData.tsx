@@ -4,7 +4,7 @@ import { Divider, Row, Col, Image, Card } from 'antd';
 import ReactOwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-
+import { CloudOutlined } from '@ant-design/icons';
 
 const WeatherData = ({ data }: any) => {
   const { name, coord, weather, main, dt, sys, wind } = data;
@@ -22,9 +22,14 @@ const WeatherData = ({ data }: any) => {
           <Card
             title={`${name}, ${sys.country} - ${dt}`}
             style={{ height: '100%' }}
-          ></Card>
-
-          
+          >
+            <ul className="dataList">
+              <li>
+                <CloudOutlined />
+                <p>data</p>
+              </li>
+            </ul>
+          </Card>
         </Col>
       </Row>
     </div>

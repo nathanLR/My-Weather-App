@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Divider } from 'antd';
-import WeatherForm from './WeatherForm';
-import WeatherData from './WeatherData';
+import WeatherForm from '../WeatherForm/WeatherForm';
+import WeatherData from '../WeatherData/WeatherData';
 
-import { API_KEY, API_URL } from '../Utils/Constants';
-import { Coords } from '../Utils/Types';
+import { API_KEY, API_URL } from '../../Utils/Constants';
+import { Coords } from '../../Utils/Types';
 
 const WeatherContent = () => {
   const [weatherData, setWeatherData] = useState<{}>();
@@ -15,7 +15,6 @@ const WeatherContent = () => {
       .then((data) => setWeatherData(data));
   };
   console.log(weatherData);
-
 
   return (
     <div>
