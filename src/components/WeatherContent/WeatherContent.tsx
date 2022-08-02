@@ -20,11 +20,7 @@ const WeatherContent = () => {
     <div>
       <Divider orientation="left">Localistation</Divider>
       <WeatherForm fetchWeatherData={fetchWeatherData} />
-      {!weatherData ? (
-        <div>no data yet</div>
-      ) : (
-        <WeatherData data={weatherData} />
-      )}
+      <WeatherData data={weatherData} />
     </div>
   );
 };
