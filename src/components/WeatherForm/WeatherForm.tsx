@@ -4,13 +4,17 @@ import { Form, Button, Input } from 'antd';
 
 //import { Coords } from '../Utils/Types';
 type Props = {
-  fetchWeatherData: (data: string) => void
-}
+  fetchWeatherData: (data: string) => void;
+};
 const WeatherForm = ({ fetchWeatherData }: Props) => {
   // ========= V1 =======
   const [city, setCity] = useState<string>('');
   const handleSubmit = () => {
-    fetchWeatherData(city);
+    if (city) {
+      fetchWeatherData(city);
+    } else {
+      alert('You need to write a location first.');
+    }
   };
 
   // ========= END V1 ========
