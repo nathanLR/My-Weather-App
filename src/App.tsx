@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import LatestSearch from './components/LatestSearchs/LatestSearchs';
 import WeatherContent from './components/WeatherContent/WeatherContent';
@@ -13,6 +13,13 @@ const { Title } = Typography;
 const { Header, Content, Sider, Footer } = Layout;
 
 export default function App() {
+  const [latestSearch, setLatestSearch] = useState<{}[]>([]);
+
+  const addSearchAfterSubmit = (data: {}) => {
+    if (data) {
+      setLatestSearch((prevState) => [data, ...prevState]);
+    }
+  };
   return (
     <Layout>
       <Header style={{ ...flex, padding: '0px 24px' }}>
@@ -20,20 +27,21 @@ export default function App() {
       </Header>
       <Layout style={{ minHeight: 'calc(100vh - 128px)' }}>
         <Sider theme="light">
-          <LatestSearch />
+          <LatestSearch latestSearch={latestSearch} />
         </Sider>
         <Layout style={{ padding: '24px' }}>
           <Content style={{ padding: '24px', backgroundColor: '#fff' }}>
-            <WeatherContent />
+            <WeatherContent addSearchAfterSubmit={addSearchAfterSubmit} />
           </Content>
         </Layout>
       </Layout>
       <Footer
         style={{
-          padding: '0',
+          padding: '20px 0',
           height: '64px',
           backgroundColor: '#001529',
           color: 'white',
+          textAlign: 'center',
         }}
       >
         <p>nathan</p>

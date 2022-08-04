@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Row, Col, Image, Card, List } from 'antd';
-import ReactOwlCarousel from 'react-owl-carousel';
+
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { CloudOutlined } from '@ant-design/icons';
-import { grey } from '@ant-design/colors';
 
 // `${name}, ${sys.country} - ${dt}`
 const WeatherData = ({ data }: any) => {
-  console.log(grey);
   if (!data) {
     // PLACEHOLDER DATA, WAITING FOR USER TO SEARCH A LOCATION'S WEATHER
     return (
@@ -57,27 +55,6 @@ const WeatherData = ({ data }: any) => {
       </div>
     );
   }
-
-  // return (
-  //   <div>
-  //     <Divider orientation="left">Weather</Divider>
-  //     <Row>
-  //       <Col span={24}>
-  //         <Card
-  //           title={!data ? 'London, UK - 18:20:25' : 'bonjour'}
-  //           style={{ height: '100%' }}
-  //         >
-  //           <ul className="dataList">
-  //             <li>
-  //               <CloudOutlined />
-  //               <p>data</p>
-  //             </li>
-  //           </ul>
-  //         </Card>
-  //       </Col>
-  //     </Row>
-  //   </div>
-  //);
 };
 
 WeatherData.propTypes = {
