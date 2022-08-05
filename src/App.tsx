@@ -14,12 +14,16 @@ const { Header, Content, Sider, Footer } = Layout;
 
 export default function App() {
   const [latestSearch, setLatestSearch] = useState<{}[]>([]);
-
+  const [alreadySearchedLocation, setAlreadySearchedLocation] = useState<{}>({});
   const addSearchAfterSubmit = (data: {}) => {
     if (data) {
       setLatestSearch((prevState) => [data, ...prevState]);
     }
   };
+  const displayAlreadySearchedLocation = (cityData: {}) => {
+      setAlreadySearchedLocation(cityData);
+  }
+  //use memo 
   return (
     <Layout>
       <Header style={{ ...flex, padding: '0px 24px' }}>
@@ -27,11 +31,11 @@ export default function App() {
       </Header>
       <Layout style={{ minHeight: 'calc(100vh - 128px)' }}>
         <Sider theme="light">
-          <LatestSearch latestSearch={latestSearch} />
+          <LatestSearch latestSearch={latestSearch} displayAlreadySearchedLocation={displayAlreadySearchedLocation}/>
         </Sider>
         <Layout style={{ padding: '24px' }}>
           <Content style={{ padding: '24px', backgroundColor: '#fff' }}>
-            <WeatherContent addSearchAfterSubmit={addSearchAfterSubmit} />
+            <WeatherContent addSearchAfterSubmit={addSearchAfterSubmit} cachedData={alreadySearchedLocation}/>
           </Content>
         </Layout>
       </Layout>
@@ -44,7 +48,7 @@ export default function App() {
           textAlign: 'center',
         }}
       >
-        <p>nathan</p>
+        <p>Nathan LE ROUX - 2022</p>
       </Footer>
     </Layout>
   );

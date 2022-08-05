@@ -9,10 +9,12 @@ import { API_KEY, API_URL } from '../../Utils/Constants';
 
 type Props = {
   addSearchAfterSubmit: (newSearch: {}) => void;
+  cachedData: {};
 };
 
-const WeatherContent = ({ addSearchAfterSubmit }: Props) => {
+const WeatherContent = ({ addSearchAfterSubmit, cachedData }: Props) => {
   const [weatherData, setWeatherData] = useState<{}>();
+  useEffect(() => {}, [cachedData]);
   const fetchWeatherData = (data: string) => {
     fetch(`${API_URL}q=${data}&units=metric&appid=${API_KEY}`)
       .then((reponse) => reponse.json())
@@ -34,6 +36,7 @@ const WeatherContent = ({ addSearchAfterSubmit }: Props) => {
 
 WeatherContent.propTypes = {
   addSearchAfterSubmit: PropTypes.func,
+  cachedData: PropTypes.object,
 };
 
 export default WeatherContent;
